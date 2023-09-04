@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- #44E3FF -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script src="https://kit.fontawesome.com/dc55826fc4.js" crossorigin="anonymous"></script>
+
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="C:\Project\logo1.png" class="logo">
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Skills</a></li>
+                    <li><a href="#contact">Resume</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fas fa-times" onclick="closemenu()"></i>
+                </ul>
+                <i class="fas fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <p>Software Developer</p>
+                <h1>Hi, I'm <span>Sourabh</span><br> Bisht From India </h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- about -->
+    <div id="about">
+        <div class="container">
+            <div class="row"> 
+                <div class="about-col-1">
+                    <img src="about_back.png" alt="">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p></p>
+                    <p>Worked as a full stack web developer at Digilytics Ai. I have 1.5+
+                        experience in Java, SpringBoot, Microservice, MySQL and I'm currently exploring opportunities in Angular and AI. Talking about 
+                        my achievements I have solved 150+  problems on HackerRank. </p>
+                        <!-- I am a finalist in Innovative India Coding Challenge that
+                        was organized by Coding Ninjas all over india. I have a decent problem solving
+                        skills and I’m now looking for other opportunities where i can get exposure to
+                        various technologies. -->
+                        <!-- as well as I’m currently an Expert on Codestudio(Level-7) and solved
+                        180+ problems there. -->
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>Data Structures & Algorithms</span><br>Solved hundreds of problems on Leetcode,
+                                HackerRank, GFG</li>
+                                  
+                           
+                            <li><span>Skills</span><br>Java | MySQL | SpringBoot |  | JavaScript | HTML
+                                | CSS</li>
+                                <li><span>Tools</span><br>Git | Postman-API | Jira</li>
+
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>2022 - 2023</span><br>Full Stack Developer at Digilytics Ai</li>
+                            <li><span>2022-2022</span><br>Salesforce Developer Trainee at Cloud Analogy.</li>
+                            <li><span>2019</span><br> Web-App Developer in K. S. Hospitalatity Services Pvt. Ltd.</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>2020-2022</span><br>Master of Computer Application at Graphic Era University, Dehradun</li>
+                             <li><span>2016-2019</span><br>Bachelor of Computer Application at Acharya Institute, Bangalore.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <div id="services">
+        <div class="container">
+            <h1 class="sub-title">Strengths</h1>
+            <div class="services-list">
+                <div>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>DSA</h2>
+                    <p>Having solved over 300 problems on various
+                        platforms including leetcode, HackerRank, HackerEarth,
+                        gfg I am capable of solving complex problems
+                        and can guide people on how to approach
+                        various topics in Data Structures and Algorithms.
+                    </p>
+                    <a href="https://www.hackerrank.com/sourabhbisht120?hr_r=1">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-crop-simple"></i>
+                    <h2>Web Development</h2>
+                    <p>I have pretty decent experience in various technologies
+                        such as SpringBoot, RestAPIs on the backend
+                        whereas I do code in Java and also worked on frontend
+                        languages like HTML, CSS, Javascript which makes me a worthy
+                        full stack developer. I've been in this field for more than
+                        1 years now and I'm still learning new things daily.
+                    </p>
+                    <a href="https://github.com/sourabh199818">Learn more</a>
+                </div>
+                <!-- <div>
+                    <i class="fa-brands fa-app-store-ios"></i>
+                    <h2>Content Writing</h2>
+                    <p>I used to write blogs for over 6 months from 2020-2021 in fitness
+                        and nutrition and helped people live a healthy
+                        lifestyle just by writing blogs. 
+                    </p>
+                    <a href="#">Learn more</a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio -->
+    <!-- <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">My Work</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="images/work-3.png">
+                    <div class="layer">
+                        <h3>Ecommerce</h3>
+                        <p>A full stack web application where customers can browse through products, add items to their
+                            cart, make secure payments, and have the products delivered to their doorstep. The
+                            application typically includes features such as product listings, shopping carts, checkout
+                            pages, secure payment processing etc. Currently working on authentication part.</p>
+                        <a href="https://github.com/Kartikk1127/E-commerce"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+
+                </div>
+                <div class="work">
+                    <img src="images/work-2.png">
+                    <div class="layer">
+                        <h3>Kartik's Kitchen</h3>
+                        <p>A food order webapp where one can search,
+                            rate, addd food to cart or remove from it and
+                            can order food from the menu.
+                        </p>
+                        <a href="https://github.com/Kartikk1127/angular_food_order"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/work-3.png">
+                    <div class="layer">
+                        <h3>Customer Relationship Management</h3>
+                        <p>A management webapp where one can create, update, read, delete users. Spring and hibernate
+                            have been used at the backend and currently working on it.</p>
+                        <a href="https://github.com/Kartikk1127/Customer-Relationship-Manager"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/work-1.png">
+                    <div class="layer">
+                        <h3>Microservices E-Shop</h3>
+                        <p>A backend project which basically focuses on how microservices interact with each other,
+                            implemented circuit breaker, distributed tracing and made a fully functional microservices
+                            project.
+                        </p>
+                        <a href="https://github.com/Kartikk1127/microservices-parent"><i
+                                class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="btn">See more</a>
+        </div>
+    </div> -->
+
+    <!-- contact -->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fa-solid fa-paper-plane"></i> Sourabhbisht120@gmail.com</p>
+                    <!-- <p><i class="fa-solid fa-phone"></i> +91 9794159484</p> -->
+                    <div class="social-icons">
+                        <!-- <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a> -->
+                        <!-- <a href="https://twitter.com/Kartik__1127"><i class="fa-brands fa-twitter"></i></a> -->
+                        <a href="https://www.linkedin.com/in/sourabh-bisht-50669613a/"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://github.com/sourabh199818"><i class="fa-brands fa-github"></i></i></a>
+                    </div>
+                    <a href="C:\Project\Sourabh_Bisht_RESUME.pdf" download class="btn btn2">Download CV</a>
+                </div>
+                <!-- <div class="contact-right">
+                    <form>
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="Email" placeholder="Your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn2">Submit</button>
+                    </form>
+                </div> -->
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright <i class="fa-regular fa-copyright"></i> Sourabh.Made with <i class="fa-solid fa-heart"></i>
+            </p>
+        </div>
+    </div>
+
+    <script>
+
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname) {
+            for (tablink of tablinks) {
+                tablink.classList.remove("active-link");
+            }
+            for (tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+
+    </script>
+
+    <script>
+
+        var sidemenu = document.getElementById("sidemenu");
+
+        function openmenu() {
+            sidemenu.style.right = "0";
+        }
+        function closemenu() {
+            sidemenu.style.right = "-200px";
+        }
+
+    </script>
+
+</body>
+
+</html>
