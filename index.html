@@ -1,188 +1,489 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<!-- #44E3FF -->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Portfolio Website</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sourabh Bisht — Portfolio</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://kit.fontawesome.com/dc55826fc4.js" crossorigin="anonymous"></script>
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --muted: #6b7280;
+      --text: #0f172a;
+      --accent: #0ea5a4;        /* primary teal */
+      --accent-2: #ff7a59;      /* warm micro-highlight (used sparingly) */
+      --glass: rgba(14,165,164,0.06);
+      --card-shadow: 0 8px 24px rgba(15,23,42,0.06);
+      --radius: 12px;
+      --maxw: 1100px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      -webkit-font-feature-settings: "liga" on;
+    }
+
+    /* Layout container */
+    .wrap{max-width:var(--maxw);margin:36px auto;padding:28px;}
+
+    /* Header / nav */
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:10px}
+    .brand{font-family:Poppins,Inter;font-weight:700;font-size:20px}
+    nav ul{display:flex;gap:18px;list-style:none;padding:0;margin:0;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:6px 8px;border-radius:8px}
+    nav a:hover{color:var(--text);background:rgba(0,0,0,0.03)}
+    .cta{background:linear-gradient(90deg,var(--accent),#2dd4bf);color:white;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;box-shadow:0 6px 18px rgba(14,165,164,0.14)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns: 1fr 1fr;gap:40px;align-items:center;padding:36px 0 18px}
+    .kicker{display:inline-block;padding:8px 12px;border-radius:999px;background:var(--glass);color:var(--accent);font-weight:700;font-size:12px}
+    h1{font-family:Poppins,Inter;font-size:44px;margin:18px 0 12px;line-height:1}
+    p.lead{color:var(--muted);font-size:18px;max-width:76%}
+    .hero-actions{margin-top:22px;display:flex;gap:14px;align-items:center}
+    .btn-outline{padding:10px 14px;border-radius:10px;border:1px solid var(--accent);color:var(--accent);background:white;font-weight:600;text-decoration:none}
+
+    /* Hero right cards */
+    .hero-right{display:flex;flex-direction:column;gap:14px}
+    .mini-card{background:var(--surface);border-radius:var(--radius);padding:16px;box-shadow:var(--card-shadow);display:flex;align-items:center;gap:12px}
+    .stat{font-weight:700;font-size:20px;color:var(--text)}
+    .stat-sub{color:var(--muted);font-size:13px}
+
+    /* Section titles */
+    section{padding:40px 0}
+    .section-title{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    .section-title h2{margin:0;font-size:20px;color:var(--accent);letter-spacing:0.2px}
+
+    /* About */
+    .about-card{background:var(--surface);border-radius:var(--radius);padding:18px;box-shadow:var(--card-shadow)}
+
+    /* Skills grid */
+    .skills-grid{display:flex;gap:14px;flex-wrap:wrap}
+    .skill-pill{background:linear-gradient(180deg, rgba(14,165,164,0.04), transparent);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 6px 18px rgba(14,165,164,0.03)}
+    .skill-pill i{font-size:18px;color:var(--accent)}
+    .skills-column{display:grid;gap:8px}
+
+    /* Projects */
+    .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .project-card{background:var(--surface);border-radius:var(--radius);padding:18px;box-shadow:var(--card-shadow);display:flex;flex-direction:column;gap:10px}
+    .project-thumb{height:140px;background:#f8fafc;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600}
+    .project-meta{font-size:13px;color:var(--muted)}
+    .project-actions{display:flex;gap:10px;margin-top:auto}
+    .btn{padding:8px 12px;border-radius:10px;border:0;font-weight:600;cursor:pointer}
+    .btn-primary{background:var(--accent);color:white}
+    .btn-ghost{background:transparent;border:1px solid #eceff1;color:var(--text)}
+
+    /* Timeline / Experience */
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .timeline-item{background:var(--surface);border-radius:var(--radius);padding:14px;box-shadow:var(--card-shadow);display:flex;flex-direction:column;gap:8px}
+    .timeline-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .role{font-weight:700}
+    .company{color:var(--muted);font-size:13px}
+    .period{color:var(--muted);font-size:13px}
+
+    /* Achievements */
+    .ach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+
+    /* Contact section (redesign) */
+    .contact-grid{display:grid;grid-template-columns:1fr 380px;gap:20px;align-items:start}
+    .contact-card{background:var(--surface);padding:18px;border-radius:var(--radius);box-shadow:var(--card-shadow)}
+    .contact-top{display:flex;flex-direction:column;gap:8px}
+    .contact-top .title{font-weight:700;font-size:18px}
+    .contact-email-row{display:flex;align-items:center;gap:12px;margin-top:8px}
+    .contact-email{display:flex;flex-direction:column}
+    .email-link{color:var(--text);text-decoration:none;font-weight:700}
+    .small-muted{color:var(--muted);font-size:13px;margin-top:4px}
+    .social-row{display:flex;gap:12px;margin-top:12px}
+    .social-row a{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:8px;background:linear-gradient(180deg, rgba(14,165,164,0.06), transparent);color:var(--accent);text-decoration:none}
+    .social-row a:hover{transform:translateY(-4px);transition:all .18s ease}
+
+    /* Contact form (right) */
+    .form .field{display:flex;flex-direction:column;margin-bottom:12px}
+    input,textarea{padding:12px;border-radius:10px;border:1px solid #eef2f4;font-size:14px}
+    textarea{min-height:120px;resize:vertical}
+    .form .help{font-size:13px;color:var(--muted)}
+    .form .form-actions{display:flex;gap:10px;align-items:center;margin-top:8px}
+    .copy-btn{background:transparent;border:1px dashed #e6f6f3;color:var(--accent);padding:8px 10px;border-radius:8px;cursor:pointer}
+    .copy-btn:hover{background:rgba(14,165,164,0.04)}
+    .success-note{background:linear-gradient(90deg, rgba(14,165,164,0.06), transparent);padding:10px;border-radius:10px;color:var(--accent);display:none}
+
+    footer{padding:22px 0;text-align:center;color:var(--muted);font-size:14px;margin-top:8px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .projects-grid{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .contact-card{order:2}
+    }
+
+    @media (max-width:560px){
+      h1{font-size:30px}
+      .wrap{padding:16px;margin:20px auto}
+    }
+
+    /* reveals */
+    .reveal{opacity:0;transform:translateY(8px);transition:all .55s cubic-bezier(.2,.9,.3,1)}
+    .reveal.show{opacity:1;transform:none}
+  </style>
 </head>
-<script src="https://kit.fontawesome.com/dc55826fc4.js" crossorigin="anonymous"></script>
 
 <body>
-    <div id="header">
-        <div class="container">
-            <nav>
-                <img src="logo1.png" class="logo">
-                <ul id="sidemenu">
-                    <li><a href="#header">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Skills</a></li>
-                    <li><a href="#contact">Resume</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <i class="fas fa-times" onclick="closemenu()"></i>
-                </ul>
-                <i class="fas fa-bars" onclick="openmenu()"></i>
-            </nav>
-            <div class="header-text">
-                <p>Software Developer</p>
-                <h1>Hi, I'm <span>Sourabh</span><br> Bisht From India </h1>
+  <div class="wrap">
+    <header>
+      <div class="brand">Sourabh <span style="color:var(--accent)">Bisht</span></div>
+      <nav>
+        <ul>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a class="cta" href="Sourabh_Bisht.pdf" download>Download CV</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <span class="kicker">Full-Stack Developer</span>
+        <h1 class="reveal">Hi, I’m <span style="color:var(--accent)">Sourabh</span> Bisht</h1>
+        <p class="lead reveal">I build robust backend systems with <strong>Java & Spring Boot</strong> and craft front-end experiences using <strong>Angular</strong>. I solve problems and love clean architecture, microservices and algorithms.</p>
+        <div class="hero-actions reveal">
+          <a class="cta" href="Sourabh_Bisht.pdf" download>Download CV</a>
+          <a class="btn-outline" href="#projects">See Projects</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="mini-card reveal">
+          <div>
+            <div class="stat">2+ yrs</div>
+            <div class="stat-sub">Industry experience</div>
+          </div>
+        </div>
+        <div class="mini-card reveal">
+          <div>
+            <div class="stat">400+</div>
+            <div class="stat-sub">DSA problems solved</div>
+          </div>
+        </div>
+        <div class="mini-card reveal">
+          <div>
+            <div class="stat">Active Open Source</div>
+            <div class="stat-sub">GitHub: sourabh199818</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-title"><h2>About</h2></div>
+      <div class="about-card reveal">
+        <p>
+          Full Stack Software Developer with a Master's in Computer Applications (Graphic Era University) and 2+ years building
+          scalable enterprise applications. Experienced in Java, Spring Boot, Microservices, PostgreSQL/MySQL and Angular.
+          I focus on performance, testability and shipping production-ready features. I’ve contributed to government & fintech projects,
+          optimized heavy data flows, and improved stakeholder decision-making through real-time dashboards.
+        </p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-title"><h2>Skills</h2></div>
+
+      <div class="skills-grid reveal">
+        <div class="skills-column">
+          <div class="skill-pill"><i class="fa-brands fa-java"></i><div>Java</div></div>
+          <div class="skill-pill"><i class="fa-solid fa-code"></i><div>Spring Boot</div></div>
+          <div class="skill-pill"><i class="fa-solid fa-sitemap"></i><div>Microservices</div></div>
+        </div>
+
+        <div class="skills-column">
+          <div class="skill-pill"><i class="fa-brands fa-angular"></i><div>Angular</div></div>
+          <div class="skill-pill"><i class="fa-solid fa-database"></i><div>PostgreSQL / MySQL</div></div>
+          <div class="skill-pill"><i class="fa-solid fa-network-wired"></i><div>Kafka, REST APIs</div></div>
+        </div>
+
+        <div class="skills-column">
+          <div class="skill-pill"><i class="fa-solid fa-bug"></i><div>DSA & System Design</div></div>
+          <div class="skill-pill"><i class="fa-solid fa-docker"></i><div>Docker, Jenkins, CI/CD</div></div>
+          <div class="skill-pill"><i class="fa-solid fa-cloud"></i><div>AWS & Cloud Concepts</div></div>
+        </div>
+      </div>
+
+      <!-- Expanded skill details (detailed/resume-driven) -->
+      <div style="margin-top:18px" class="about-card reveal">
+        <strong>Relevant Courses & Domain:</strong>
+        <p class="small-muted" style="margin:8px 0 0;">
+          Data Structures & Algorithms, System Design, OOP, Operating Systems, Cyber Security, Computer Networking,
+          Database Management, Cloud Computing (AWS), Mathematics & Statistics.
+        </p>
+
+        <strong style="margin-top:10px;display:block">Languages & Tools:</strong>
+        <p class="small-muted" style="margin:8px 0 0;">
+          Java, JavaScript, C/C++, C#, Python, PHP, SQL, HTML/CSS, TypeScript, Spring Boot, Angular, Kafka,
+          PostgreSQL, MySQL, MongoDB, Docker, Jenkins, Git, Jira, Highcharts, jqGrid.
+        </p>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-title"><h2>Projects</h2></div>
+
+      <div class="projects-grid reveal">
+        <article class="project-card">
+          <div class="project-thumb">Online Shopping Platform — microservices diagram</div>
+          <h3>Online Shopping Platform</h3>
+          <p class="project-meta"><strong>Mar 2024 – Apr 2024</strong> • Microservices, Kafka, Spring Boot, Resilience4j, Docker</p>
+          <p>Re-architected a monolithic e-commerce system into 6 modular microservices. Improved feature rollout speed by <strong>30%</strong>,
+             ensured resilient communication via Kafka & Resilience4j and enabled dynamic discovery with Eureka registry.</p>
+          <div class="project-actions">
+            <button class="btn btn-primary" onclick="openProject('https://github.com/sourabh199818')">View Code</button>
+              <a class="btn btn-ghost" href="#" aria-disabled="true">More Info</a>
+
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-thumb">Drone Simulation — screenshot</div>
+          <h3>Open Source Projects (selected)</h3>
+          <p class="project-meta"><strong>Aug 2020 – Jun 2022</strong> • Spring Cloud, Docker, MySQL</p>
+          <ul style="margin:0 0 8px 18px;color:var(--muted)">
+            <li><strong>Drone Simulation System</strong>: geolocation-based ops & mission tracking via REST APIs.</li>
+            <li><strong>BNPL & Shopping Apps</strong>: payment flows, cart & checkout, order automation (100% automated EMI & order flows).</li>
+            <li><strong>Cab Booking</strong>: real-time driver matching & scalable ride handling.</li>
+          </ul>
+          <div class="project-actions">
+            <button class="btn btn-primary" onclick="openProject('https://github.com/sourabh199818')">View Code</button>
+            <a class="btn btn-ghost" href="#" aria-disabled="true">More Info</a>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-title"><h2>Experience</h2></div>
+
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-top">
+            <div>
+              <div class="role">Software Developer</div>
+              <div class="company">Amnex Infotechnologies — Delhi, India</div>
             </div>
+            <div class="period">Oct 2023 – Present</div>
+          </div>
+          <ul style="margin:8px 0 0 18px;color:var(--muted)">
+            <li>Improved national crop yield accuracy to <strong>85%</strong> by digitizing CCE data with GPS-tagged images and real-time insights.</li>
+            <li>Reduced data retrieval time by <strong>50%</strong> via optimized PostgreSQL stored procedures for crop yield analytics.</li>
+            <li>Decreased stakeholder decision latency by <strong>30%</strong> through an Angular dashboard for instant access to survey metrics.</li>
+            <li>Managed > <strong>250</strong> Git commits and standardized team practices to ensure <strong>100%</strong> milestone delivery.</li>
+            <li>Engineered Spring Boot services used in GCES food supply estimation to support data-driven policy briefings to Parliament.</li>
+          </ul>
         </div>
-    </div>
 
-    <!-- about -->
-    <div id="about">
-        <div class="container">
-            <div class="row"> 
-                <div class="about-col-1">
-                    <img src="about_back.png" alt="">
-                </div>
-                <div class="about-col-2">
-                    <h1 class="sub-title">About Me</h1>
-                    <p></p>
-                    <p>Worked as a full stack web developer at Digilytics Ai. I have 2+
-                        experience in Java, SpringBoot, Microservice, MySQL and I'm currently exploring opportunities in Angular and AI. Talking about 
-                        my achievements I have solved 150+  problems on HackerRank. </p>
-                        <!-- I am a finalist in Innovative India Coding Challenge that
-                        was organized by Coding Ninjas all over india. I have a decent problem solving
-                        skills and I’m now looking for other opportunities where i can get exposure to
-                        various technologies. -->
-                        <!-- as well as I’m currently an Expert on Codestudio(Level-7) and solved
-                        180+ problems there. -->
-                    <div class="tab-titles">
-                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
-                        <p class="tab-links" onclick="opentab('education')">Education</p>
-                    </div>
-                    <div class="tab-contents active-tab" id="skills">
-                        <ul>
-                            <li><span>Data Structures & Algorithms</span><br>Solved hundreds of problems on Leetcode,
-                                HackerRank, GFG</li>
-                                  
-                           
-                            <li><span>Skills</span><br>Java | MySQL | SpringBoot |  | JavaScript | HTML
-                                | CSS</li>
-                                <li><span>Tools</span><br>Git | Postman-API | Jira</li>
-
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="experience">
-                        <ul>
-                           <li><span>2023 - Present</span><br>Software Developer at  Amnex Infotechnologies</li>
-                            <li><span>2022 - 2023</span><br>Full Stack Developer at Digilytics Ai</li>
-                            <li><span>2019</span><br> Web-App Developer in K. S. Hospitalatity Services Pvt. Ltd.</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="education">
-                        <ul>
-                            <li><span>2020-2022</span><br>Master of Computer Application at Graphic Era University, Dehradun</li>
-                             <li><span>2016-2019</span><br>Bachelor of Computer Application at Acharya Institute, Bangalore.</li>
-                        </ul>
-                    </div>
-                </div>
+        <div class="timeline-item">
+          <div class="timeline-top">
+            <div>
+              <div class="role">Software Developer</div>
+              <div class="company">Digilytics AI — Gurugram, Haryana</div>
             </div>
+            <div class="period">May 2022 – May 2023</div>
+          </div>
+          <ul style="margin:8px 0 0 18px;color:var(--muted)">
+            <li>Accelerated loan processing cycles by <strong>5 days</strong> via engineered cross-team workflows and automation.</li>
+            <li>Boosted user engagement by <strong>40%</strong> through responsive UI components; optimized load times under <strong>3s</strong>.</li>
+            <li>Integrated AI-driven workflows using Java microservices and Kafka, improving lending efficiency.</li>
+            <li>Modernized mortgage operations using Highcharts & jqGrid for real-time insights.</li>
+            <li>Conducted unit & integration testing across 12+ modules, increasing test coverage and stability by <strong>18%</strong>.</li>
+          </ul>
         </div>
-    </div>
+      </div>
+    </section>
 
-    <!-- Services -->
-    <div id="services">
-        <div class="container">
-            <h1 class="sub-title">Strengths</h1>
-            <div class="services-list">
-                <div>
-                    <i class="fa-solid fa-code"></i>
-                    <h2>DSA</h2>
-                    <p>Having solved over 300 problems on various
-                        platforms including leetcode, HackerRank, HackerEarth,
-                        gfg I am capable of solving complex problems
-                        and can guide people on how to approach
-                        various topics in Data Structures and Algorithms.
-                    </p>
-                    <a href="https://www.hackerrank.com/sourabhbisht120?hr_r=1">Learn more</a>
-                </div>
-                <div>
-                    <i class="fa-solid fa-crop-simple"></i>
-                    <h2>Web Development</h2>
-                    <p>I have pretty decent experience in various technologies
-                        such as SpringBoot, RestAPIs on the backend
-                        whereas I do code in Java and also worked on frontend
-                        languages like HTML, CSS, and Javascript which makes me a worthy
-                        full stack developer. I've been in this field for more than
-                        2 year now and I'm still learning new things daily.
-                    </p>
-                    <a href="https://github.com/sourabh199818">Learn more</a>
-                </div>
-              
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements">
+      <div class="section-title"><h2>Achievements</h2></div>
+      <div class="ach-grid reveal">
+        <div class="project-card">
+          <strong>Infosys Cloud Course & AWS (Udemy) [2024]</strong>
+          <p class="small-muted" style="margin-top:8px;">Completed cloud computing coursework and AWS practical modules to strengthen cloud fundamentals.</p>
+        </div>
+
+        <div class="project-card">
+          <strong>Employee of the Month — Digilytics AI [2022]</strong>
+          <p class="small-muted" style="margin-top:8px;">Recognized in top 1 of 50 for performance and impact on lending product features.</p>
+        </div>
+
+        <div class="project-card">
+          <strong>Trailhead Adventurer — Salesforce [2022]</strong>
+          <p class="small-muted" style="margin-top:8px;">Completed Salesforce modules to grow CRM platform expertise.</p>
+        </div>
+
+        <div class="project-card">
+          <strong>Java & Software Testing — ABC Technology Institute [2019]</strong>
+          <p class="small-muted" style="margin-top:8px;">Proficiency certification in Java and software testing methodologies.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT (redesigned & detailed) -->
+    <section id="contact">
+      <div class="section-title"><h2>Contact</h2></div>
+
+      <div class="contact-grid reveal">
+        <!-- left: contact info -->
+        <div class="contact-card">
+          <div class="contact-top">
+            <div class="title">Let's connect</div>
+            <div class="small-muted">I'm open to roles in backend engineering, system design, or full-stack work. Prefer Java/Spring Boot roles — happy to chat about architecture, microservices, or DSA mentorship.</div>
+          </div>
+
+          <div class="contact-email-row" style="margin-top:14px">
+            <div class="contact-email">
+              <div style="font-size:13px;color:var(--muted)">Email</div>
+              <a class="email-link" id="emailLink" href="mailto:sourabhbisht120p@gmail.com">sourabhbisht120p@gmail.com</a>
+              <div class="small-muted">Click email to open mail client or use the copy button to copy address.</div>
             </div>
-        </div>
-    </div>
 
-  
-    <!-- contact -->
-    <div id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="contact-left">
-                    <h1 class="sub-title">Contact Me</h1>
-                    <p><i class="fa-solid fa-paper-plane"></i> Sourabhbisht120p@gmail.com</p>
-                    <!-- <p><i class="fa-solid fa-phone"></i> +91 9794159484</p> -->
-                    <div class="social-icons">
-                        <!-- <a href="https://facebook.com/"><i class="fa-brands fa-facebook"></i></a> -->
-                        <a href="https://x.com/sourabhBis51582"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/in/sourabh-bisht-4a18a8291/"><i
-                                class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com/sourabh199818"><i class="fa-brands fa-github"></i></i></a>
-                    </div>
-                    <a href="Sourabh_Bisht_RESUME1.pdf" download class="btn btn2">Download CV</a>
-                </div>
-                <!-- <div class="contact-right">
-                    <form>
-                        <input type="text" name="Name" placeholder="Your Name" required>
-                        <input type="email" name="Email" placeholder="Your Email" required>
-                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                        <button type="submit" class="btn btn2">Submit</button>
-                    </form>
-                </div> -->
+            <div style="margin-left:auto;display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+              <button class="copy-btn" id="copyEmailBtn" title="Copy email">Copy email</button>
+              <a class="cta" href="Sourabh_Bisht.pdf" download style="font-size:13px;padding:8px 12px">Download CV</a>
             </div>
+          </div>
+
+          <div class="social-row" style="margin-top:18px">
+            <a href="https://github.com/sourabh199818" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/sourabh199818" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://x.com/sourabhBis51582" target="_blank" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+         <a href="https://leetcode.com/u/SourabhBisht/" target="_blank" aria-label="LeetCode">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png" 
+       alt="LeetCode" 
+       style="width: 24px; height: 24px; vertical-align: middle;">
+</a>
+
+          </div>
+
+          <div class="small-muted" style="margin-top:16px"><strong>Location:</strong> India</div>
+
+          <div id="copySuccess" class="success-note" style="margin-top:12px">Email copied to clipboard ✓</div>
         </div>
-        <div class="copyright">
-            <p>Copyright <i class="fa-regular fa-copyright"></i> Sourabh.Made with <i class="fa-solid fa-heart"></i>
-            </p>
-        </div>
-    </div>
 
-    <script>
+     
+      </div>
+    </section>
 
-        var tablinks = document.getElementsByClassName("tab-links");
-        var tabcontents = document.getElementsByClassName("tab-contents");
-        function opentab(tabname) {
-            for (tablink of tablinks) {
-                tablink.classList.remove("active-link");
-            }
-            for (tabcontent of tabcontents) {
-                tabcontent.classList.remove("active-tab");
-            }
-            event.currentTarget.classList.add("active-link");
-            document.getElementById(tabname).classList.add("active-tab");
-        }
+    <footer>
+      <p>© 2025 Sourabh Bisht · Built with ❤️ · <small style="color:var(--muted)">Light, fast & accessible</small></p>
+    </footer>
+  </div>
 
-    </script>
+  <script>
+    // reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('show');
+      });
+    },{threshold:.08});
+    reveals.forEach(r=>observer.observe(r));
 
-    <script>
+    // smooth nav scroll
+    document.querySelectorAll('nav a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:'smooth'});
+      });
+    });
 
-        var sidemenu = document.getElementById("sidemenu");
+    // open project helper (placeholders)
+    function openProject(url){
+      window.open(url, '_blank');
+    }
 
-        function openmenu() {
-            sidemenu.style.right = "0";
-        }
-        function closemenu() {
-            sidemenu.style.right = "-200px";
-        }
+    // Copy email functionality
+    const copyBtn = document.getElementById('copyEmailBtn');
+    const copySuccess = document.getElementById('copySuccess');
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('sourabhbisht120p@gmail.com');
+        copySuccess.style.display = 'block';
+        setTimeout(()=> copySuccess.style.display = 'none', 2500);
+      } catch (err) {
+        alert('Please copy manually: sourabhbisht120p@gmail.com');
+      }
+    });
 
-    </script>
+    // Contact form handling (client-side only)
+    const contactForm = document.getElementById('contactForm');
+    const emailField = document.getElementById('email');
+    const emailError = document.getElementById('emailError');
+    const formSuccess = document.getElementById('formSuccess');
+    const clearBtn = document.getElementById('clearBtn');
 
+    function isValidEmail(value){
+      // simple email regex
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    contactForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = emailField.value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if(!isValidEmail(email)){
+        emailError.style.display = 'block';
+        return;
+      } else {
+        emailError.style.display = 'none';
+      }
+
+      // Simulate sending (client-only). Replace with real endpoint as needed.
+      formSuccess.innerText = 'Thanks ' + (name || '') + ' — your message is sent. I will reply within 2 business days.';
+      formSuccess.style.display = 'block';
+
+      // Clear form after success
+      contactForm.reset();
+      setTimeout(()=> {
+        formSuccess.style.display = 'none';
+      }, 6500);
+    });
+
+    clearBtn.addEventListener('click', ()=>{
+      contactForm.reset();
+      emailError.style.display = 'none';
+      formSuccess.style.display = 'none';
+    });
+
+    // Accessibility: enable Enter key for copy button
+    copyBtn.addEventListener('keydown', (ev)=>{
+      if(ev.key === 'Enter' || ev.key === ' ') {
+        ev.preventDefault();
+        copyBtn.click();
+      }
+    });
+  </script>
 </body>
-
 </html>
